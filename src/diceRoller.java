@@ -19,9 +19,10 @@ public class diceRoller {
 		
 		do {
 			rollCounter+=1;
-			System.out.print("\n" + "How many sides should each die have?");
+			System.out.print("\n" + "How many sides should each die have? ");
 			numSides = scnr.nextInt();
-	
+			
+			System.out.println("Roll " +rollCounter +":");
 			randomRollOne = generateRandomDice(numSides);
 			randomRollTwo = generateRandomDice(numSides);
 	
@@ -70,14 +71,18 @@ public class diceRoller {
 		 */
 	public static boolean askUserYN (String x) {
 		boolean flag = true;
-		System.out.println(x);
-		Scanner scnr = new Scanner(System.in);
-		String yesNo = scnr.next().trim().toLowerCase();	
-		if (yesNo.equals("n")) {
-			flag = false;
-			System.out.println("\n" + "Thank you for visiting the Grand Circus Casino.");
-		}else if(yesNo.equals("y")){
-			 flag = true;
+		System.out.print(x);
+		String yesNo; 
+		do {
+			Scanner scnr = new Scanner(System.in);
+			yesNo = scnr.next().trim().toLowerCase();	
+		} while (!yesNo.equals("n") && !yesNo.equals("y"));
+		
+		if (yesNo.equals("y")) {
+			flag = true;
+		}else if(yesNo.equals("n")){
+			 flag = false;
+			 System.out.println("\n" + "Thank you for visiting the Grand Circus Casino.");	 
 		}
 		return flag;
 		}
